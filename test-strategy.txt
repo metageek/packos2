@@ -1,0 +1,23 @@
+Unit test framework:
+
+ * Unit tests will run inside QEMU.
+ * Not all assertions will run in the same binary.
+ * Build the test binary $FOO, copy it into a bootable image (with
+   e2cp; no need to mount), launch QEMU with -debugcon
+   file:test-$FOO.out
+ * There'll be a function to log to QEMU, which will include some kind
+   of prefix for multiplexing.  Normal console output will get one
+   prefix, assertion results will get another.
+ * A third prefix will mean "we're done now"; when we see it, we'll
+   kill QEMU.
+   * Better if the guest OS could shut down QEMU; looks like that
+     requires the guest to speak APM...which would require its own
+     suite of tests.
+ * After QEMU exits, grep test-$FOO.out for assertion results; report
+   failures.
+
+Regression tests:
+
+ * Probably the same framework for communicating results to the
+   outside, actually, just with larger binaries, and with results
+   compared with logic defined outside...somehow.
