@@ -1,4 +1,4 @@
 depth:=.
-subdirs:=lib
+subdirs:=lib samples
 
 include make.mk

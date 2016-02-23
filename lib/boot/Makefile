@@ -3,11 +3,9 @@ subdirs:=
 uses:=
 lib:=
 
-LIBFILE:=libboot.a
-LIBOBJS:=boot.o
+LIBFILE:=$(depth)/lib/libboot.a
+LIBOBJS:=boot.o kputs.o
 
 include $(depth)/make.mk
-
-libboot.a: boot.o
 
 boot.o: boot.S

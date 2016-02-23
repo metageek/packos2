@@ -1,4 +1,4 @@
-.PHONY:: all app clean depend libs lib tst check ro
+.PHONY:: all bootable clean depend libs lib tst check ro
 
 all::
 
@@ -13,10 +13,11 @@ clean::
 INCLUDES:=-I$(depth)/include
 CFLAGS+=$(INCLUDES) -g -Wall -m32
 ASFLAGS+=$(INCLUDES) -m32
+LFLAGS+=-L$(depth)/lib
 
 ifneq ($(lib),)
 libs:: lib
-LIBFILE:=lib$(lib).a
+LIBFILE:=$(depth)/lib/lib$(lib).a
 lib: $(LIBFILE)
 endif
 
@@ -26,4 +27,18 @@ $(LIBFILE): $(LIBOBJS)
 	ar r $(LIBFILE) $(LIBOBJS)
 
 all:: $(LIBFILE)
+endif
+
+ifneq ($(runsInHost),yes)
+CFLAGS+=-nostdinc -fno-stack-protector
+LFLAGS+=-melf_i386
+endif
+
+ifneq ($(bootable),)
+bootable: $(bootable)
+all:: bootable
+clean::
+	$(RM) $(bootable)
+$(bootable): libs $(bootable).o $(OBJS)
+	$(LD) $(LFLAGS) --section-start .text=0x100000 --section-start .rodata=0x10b000 --section-start .data=0x10e000 --section-start .bss=0x10f000 $(bootable).o $(OBJS) -lboot $(LIBS) -o $(bootable)
 endif
