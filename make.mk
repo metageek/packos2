@@ -35,10 +35,10 @@ LFLAGS+=-melf_i386
 endif
 
 ifneq ($(bootable),)
-bootable: $(bootable)
+bootable: $(bootable).exe
 all:: bootable
 clean::
-	$(RM) $(bootable)
-$(bootable): libs $(bootable).o $(OBJS)
-	$(LD) $(LFLAGS) --section-start .text=0x100000 --section-start .rodata=0x10b000 --section-start .data=0x10e000 --section-start .bss=0x10f000 $(bootable).o $(OBJS) -lboot $(LIBS) -o $(bootable)
+	$(RM) $(bootable).exe
+$(bootable).exe: libs $(bootable).o $(OBJS)
+	$(LD) $(LFLAGS) --section-start .text=0x100000 --section-start .rodata=0x10b000 --section-start .data=0x10e000 --section-start .bss=0x10f000 $(bootable).o $(OBJS) -lboot $(LIBS) -o $(bootable).exe
 endif
