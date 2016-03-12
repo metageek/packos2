@@ -1,4 +1,4 @@
 depth:=..
-subdirs:=boot
+subdirs:=boot qunit
 
 include $(depth)/make.mk

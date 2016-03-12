@@ -1,4 +1,4 @@
 depth:=..
-subdirs:=kputs
+subdirs:=kputs quitter
 
 include $(depth)/make.mk

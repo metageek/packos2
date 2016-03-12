@@ -35,6 +35,7 @@ LFLAGS+=-melf_i386
 endif
 
 ifneq ($(bootable),)
+LIBS:=$(foreach lib,$(libs),-l$(lib))
 bootable: $(bootable).exe
 all:: bootable
 clean::
