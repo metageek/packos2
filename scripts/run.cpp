@@ -159,9 +159,15 @@ void sigchld_handler(int signal) {
 }
 
 int main(int argc, const char* argv[]) {
-  if (argc != 2) {
-    fprintf(stderr, "Usage: %s <bootable>\n", argv[0]);
+  if (argc != 3) {
+    fprintf(stderr, "Usage: %s <bootable> <logfile>\n", argv[0]);
     exit(1);
+  }
+
+  FILE* log = fopen(argv[2], "w");
+  if (!log) {
+    perror("fopen");
+    exit(12);
   }
 
   const char* bootable = argv[1];
@@ -263,7 +269,7 @@ int main(int argc, const char* argv[]) {
       StartOfLine = 0,
       QAtStart = 1,
       QColonAtStart_SkipRestOfInput = 2,
-      Otherwise_SkipRestOfLine = 3
+      Otherwise_EchoRestOfLine = 3
     } State;
 
     State state = StartOfLine;
@@ -295,7 +301,8 @@ int main(int argc, const char* argv[]) {
         if (ch=='Q') {
           state = QAtStart;
         } else {
-          state = Otherwise_SkipRestOfLine;
+          putc(ch, log);
+          state = Otherwise_EchoRestOfLine;
         }
         break;
 
@@ -304,14 +311,15 @@ int main(int argc, const char* argv[]) {
           state = QColonAtStart_SkipRestOfInput;
           kill(qemu_pid, SIGINT);
         } else {
-          state = Otherwise_SkipRestOfLine;
+          state = Otherwise_EchoRestOfLine;
         }
         break;
 
       case QColonAtStart_SkipRestOfInput:
         break;
 
-      case Otherwise_SkipRestOfLine:
+      case Otherwise_EchoRestOfLine:
+        putc(ch, log);
         if (ch=='\n') {
           state = StartOfLine;
         }
@@ -320,5 +328,6 @@ int main(int argc, const char* argv[]) {
   }
 
   unlink(tmpImgName);
-  exit(11);
+  fclose(log);
+  exit(0);
 }
