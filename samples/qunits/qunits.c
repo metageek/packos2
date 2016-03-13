@@ -16,6 +16,11 @@ asmlinkage void kernelMain(void)
   qunitLog("This EXPECT_FALSE should fail");
   EXPECT_FALSE(5==5);
   
+  qunitLog("This EXPECT_EQ_INT should pass");
+  EXPECT_EQ_INT(5, 5);
+  qunitLog("This EXPECT_EQ_INT should fail");
+  EXPECT_EQ_INT(5, 17);
+  
   qunitLog("..and now quitting");
   qunitQuit();
 }

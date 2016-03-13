@@ -2,6 +2,7 @@
 #define _QUNIT_H_
 
 #include <types.h>
+#include <qstring.h>
 
 void qunitLog(const char* msg);
 void qunitWriteAssertionResults(const char* filename,
@@ -26,5 +27,15 @@ void qunitQuit();
                                "false",                        \
                                _value ? "true" : "false",      \
                                !_value);}
+
+#define EXPECT_EQ_INT(EXPECTED, ACTUAL) {   \
+  int _expected = (EXPECTED),               \
+  _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             itoa(_actual), \
+                             _expected == _actual);}
 
 #endif /*_QUNIT_H_*/
