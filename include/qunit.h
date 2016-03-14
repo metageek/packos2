@@ -28,7 +28,7 @@ void qunitQuit();
                                _value ? "true" : "false",      \
                                !_value);}
 
-#define EXPECT_EQ_INT(EXPECTED, ACTUAL) {   \
+#define EXPECT_EQ_INT(ACTUAL, EXPECTED) {   \
   int _expected = (EXPECTED),               \
   _actual = (ACTUAL);                       \
   qunitWriteAssertionResults(__FILE__,      \
@@ -36,6 +36,46 @@ void qunitQuit();
                              #ACTUAL,       \
                              #EXPECTED,     \
                              itoa(_actual), \
-                             _expected == _actual);}
+                             _actual == _expected);}
+
+#define EXPECT_LT_INT(ACTUAL, EXPECTED) {   \
+  int _expected = (EXPECTED),               \
+  _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             itoa(_actual), \
+                             _actual < _expected);}
+
+#define EXPECT_GT_INT(ACTUAL, EXPECTED) {   \
+  int _expected = (EXPECTED),               \
+  _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             itoa(_actual), \
+                             _actual > _expected);}
+
+#define EXPECT_LE_INT(ACTUAL, EXPECTED) {   \
+  int _expected = (EXPECTED),               \
+  _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             itoa(_actual), \
+                             _actual <= _expected);}
+
+#define EXPECT_GE_INT(ACTUAL, EXPECTED) {   \
+  int _expected = (EXPECTED),               \
+  _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             itoa(_actual), \
+                             _actual >= _expected);}
 
 #endif /*_QUNIT_H_*/
