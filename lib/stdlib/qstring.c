@@ -71,6 +71,8 @@ int strcmp(const char* s, const char* t) {
     if (diff) {
       return diff;
     }
+    s++;
+    t++;
   }
 
   return (*s) - (*t);

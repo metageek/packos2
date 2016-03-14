@@ -78,4 +78,54 @@ void qunitQuit();
                              itoa(_actual), \
                              _actual >= _expected);}
 
+#define EXPECT_EQ_STR(ACTUAL, EXPECTED) {   \
+    const char* _expected = (EXPECTED);     \
+  const char* _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             _actual, \
+                             strcmp(_actual, _expected) == 0);}
+
+#define EXPECT_LT_STR(ACTUAL, EXPECTED) {   \
+  const char* _expected = (EXPECTED);               \
+  const char* _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             _actual, \
+                             strcmp(_actual, _expected) < 0);}
+
+#define EXPECT_GT_STR(ACTUAL, EXPECTED) {   \
+  const char* _expected = (EXPECTED);               \
+  const char* _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             _actual, \
+                             strcmp(_actual, _expected) > 0);}
+
+#define EXPECT_LE_STR(ACTUAL, EXPECTED) {   \
+  const char* _expected = (EXPECTED);               \
+  const char* _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             _actual, \
+                             strcmp(_actual, _expected) <= 0);}
+
+#define EXPECT_GE_STR(ACTUAL, EXPECTED) {   \
+  const char* _expected = (EXPECTED);               \
+  const char* _actual = (ACTUAL);                       \
+  qunitWriteAssertionResults(__FILE__,      \
+                             __LINE__,      \
+                             #ACTUAL,       \
+                             #EXPECTED,     \
+                             _actual, \
+                             strcmp(_actual, _expected) >= 0);}
+
 #endif /*_QUNIT_H_*/

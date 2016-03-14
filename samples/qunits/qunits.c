@@ -1,4 +1,5 @@
 #include "kputs.h"
+#include <qstring.h>
 #include <qunit.h>
 #include "asm.h"
 
@@ -48,6 +49,39 @@ asmlinkage void kernelMain(void)
   EXPECT_GE_INT(5, 5);
   qunitLog("This EXPECT_GE_INT should fail");
   EXPECT_GE_INT(5, 17);
+  
+  qunitLog("This EXPECT_EQ_STR should pass");
+  EXPECT_EQ_STR("fred", "fred");
+  qunitLog("This EXPECT_EQ_STR should fail");
+  EXPECT_EQ_STR("freds", "fred");
+  
+  qunitLog("This EXPECT_LT_STR should pass");
+  EXPECT_LT_STR("barney", "fred");
+  qunitLog("This EXPECT_LT_STR should fail");
+  EXPECT_LT_STR("fred", "fred");
+  qunitLog("This EXPECT_LT_STR should fail");
+  EXPECT_LT_STR("freds", "fred");
+  
+  qunitLog("This EXPECT_LE_STR should pass");
+  EXPECT_LE_STR("barney", "fred");
+  qunitLog("This EXPECT_LE_STR should pass");
+  EXPECT_LE_STR("fred", "fred");
+  qunitLog("This EXPECT_LE_STR should fail");
+  EXPECT_LE_STR("freds", "fred");
+  
+  qunitLog("This EXPECT_GT_STR should pass");
+  EXPECT_GT_STR("fred", "barney");
+  qunitLog("This EXPECT_GT_STR should fail");
+  EXPECT_GT_STR("fred", "fred");
+  qunitLog("This EXPECT_GT_STR should fail");
+  EXPECT_GT_STR("fred", "freds");
+  
+  qunitLog("This EXPECT_GE_STR should pass");
+  EXPECT_GE_STR("fred", "barney");
+  qunitLog("This EXPECT_GE_STR should pass");
+  EXPECT_GE_STR("fred", "fred");
+  qunitLog("This EXPECT_GE_STR should fail");
+  EXPECT_GE_STR("fred", "freds");
   
   qunitLog("..and now quitting");
   qunitQuit();
