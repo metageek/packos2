@@ -9,4 +9,6 @@ int atoi(const char* s);
 // Not thread-safe.
 const char* itoa(int i);
 
+int strcmp(const char* s, const char* t);
+
 #endif /* _QSTRING_H_ */

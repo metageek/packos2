@@ -52,3 +52,26 @@ const char* itoa(int i) {
   itoa_fillbuff(i, s, 0, &len);
   return buff;
 }
+
+int strcmp(const char* s, const char* t) {
+  if (!s && !t) {
+    return 0;
+  }
+
+  if (!s) {
+    return -1;
+  }
+
+  if (!t) {
+    return 1;
+  }
+
+  while (*s && *t) {
+    int diff = (*s) - (*t);
+    if (diff) {
+      return diff;
+    }
+  }
+
+  return (*s) - (*t);
+}
