@@ -68,9 +68,10 @@ class Assertion(object):
         print '%s in %s, line %d:' % (('PASS' if self.matched else 'FAIL'),
                                       self.file,
                                       self.line)
-        print '  Expression: %s' % self.expr
-        print '  Expected:   %s' % self.expected
-        print '  Actual:     %s' % self.actual
+        if not self.matched:
+            print '  Expression: %s' % self.expr
+            print '  Expected:   %s' % self.expected
+            print '  Actual:     %s' % self.actual
 
 def parseLogfile(f):
     cur = Assertion()
