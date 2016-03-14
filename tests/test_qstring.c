@@ -9,3 +9,16 @@ void TestQStringStrcmp(void) {
   EXPECT_LT_INT(strcmp("barney", "fred"), 0);
 }
 
+void TestQStringAtoi(void) {
+  EXPECT_EQ_INT(atoi("0"), 0);
+  EXPECT_EQ_INT(atoi("-0"), 0);
+  EXPECT_EQ_INT(atoi("17"), 17);
+  EXPECT_EQ_INT(atoi("-17"), -17);
+  EXPECT_EQ_INT(atoi("-17.5"), 0);
+}
+
+void TestQStringItoa(void) {
+  EXPECT_EQ_STR(itoa(17), "17")
+  EXPECT_EQ_STR(itoa(0), "0")
+  EXPECT_EQ_STR(itoa(17), "-17");
+}

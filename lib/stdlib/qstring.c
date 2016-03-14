@@ -50,6 +50,7 @@ const char* itoa(int i) {
     s++;
   }
   itoa_fillbuff(i, s, 0, &len);
+  buff[len]=0;
   return buff;
 }
 

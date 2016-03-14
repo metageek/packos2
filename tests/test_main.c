@@ -8,6 +8,8 @@ asmlinkage void kernelMain(void)
   qunitLog("Test suite starting");
 
   TestQStringStrcmp();
+  TestQStringAtoi();
+  TestQStringItoa();
 
   qunitQuit();
 }
