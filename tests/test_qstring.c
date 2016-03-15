@@ -20,5 +20,5 @@ void TestQStringAtoi(void) {
 void TestQStringItoa(void) {
   EXPECT_EQ_STR(itoa(17), "17")
   EXPECT_EQ_STR(itoa(0), "0")
-  EXPECT_EQ_STR(itoa(17), "-17");
+  EXPECT_EQ_STR(itoa(-17), "-17");
 }
