@@ -2,6 +2,10 @@
   cross-directory dependencies, which is leading to occasional
   glitches.
 
+ * Bleah--bazel does not have support for building 32-bit, statically
+   linked binaries with no stdlibs in sight.  Shocking.  I'll have to
+   solve the problem some other way.
+
 * Add proccess switching to kernel, with memory protection.  OK if it
   initially requires manually yielding.
 
