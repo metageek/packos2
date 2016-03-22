@@ -1,0 +1,8 @@
+* Replace Makefiles with bazel.  Current Makefiles do not have any
+  cross-directory dependencies, which is leading to occasional
+  glitches.
+
+* Add proccess switching to kernel, with memory protection.  OK if it
+  initially requires manually yielding.
+
+* Add a timer to the kernel, which triggers a process switch.
