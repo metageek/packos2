@@ -34,3 +34,9 @@
 *~
 imgs/tmp.*
 scripts/run
+.sconsign.dblite
+
+# Executables
+samples/kputs/kputsSample
+samples/quitter/quitter
+samples/qunits/qunits

@@ -1,0 +1,5 @@
+Import('env')
+
+env.Object(target = 'boot.o', source = 'boot.S',
+                  AS = 'cc')
+env.StaticLibrary(target = '../boot', source = ['boot.o', 'kputs.c'])

@@ -1,0 +1,5 @@
+Import('env')
+Export('env')
+env.SConscript(['boot/SConscript',
+                'qunit/SConscript',
+                'stdlib/SConscript'])

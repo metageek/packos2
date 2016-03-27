@@ -6,6 +6,8 @@
    linked binaries with no stdlibs in sight.  Shocking.  I'll have to
    solve the problem some other way.
 
+ * scons turned out to work.
+
 * Add proccess switching to kernel, with memory protection.  OK if it
   initially requires manually yielding.
 

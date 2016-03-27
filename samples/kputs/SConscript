@@ -1,0 +1,4 @@
+Import('env')
+
+env.Object(target = 'kputsSample.o', source = ['kputsSample.c'])
+env.Bootable(target = 'kputsSample', source = ['kputsSample.o'])

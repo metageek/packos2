@@ -1,0 +1,6 @@
+Import('env')
+
+env.Object(target = 'quitter.o', source = ['quitter.c'])
+env.Bootable(target = 'quitter',
+             source = ['quitter.o'],
+             libs = ['qunit'])

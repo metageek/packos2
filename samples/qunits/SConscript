@@ -1,0 +1,6 @@
+Import('env')
+
+env.Object(target = 'qunits.o', source = ['qunits.c'])
+env.Bootable(target = 'qunits',
+             source = ['qunits.o'],
+             libs = ['qunit','stdlib'])
